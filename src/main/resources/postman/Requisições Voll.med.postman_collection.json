@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "ba35cb9a-187d-4ca8-8187-18950f873c14",
+		"name": "Requisições Voll.med",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1702273",
+		"_collection_link": "https://cloudy-firefly-3301.postman.co/workspace/API-Rest~19195e31-f62a-4caa-8729-bd92f2b2f4c1/collection/1702273-ba35cb9a-187d-4ca8-8187-18950f873c14?action=share&source=collection_link&creator=1702273"
+	},
+	"item": [
+		{
+			"name": "Cadastro de Médicos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nome\": \"Developer 5\",\r\n\"email\": \"developer5@voll.med\",\r\n\"telefone\": \"2521433\",\r\n\"crm\": \"783255\",\r\n\"especialidade\": \"CARDIOLOGIA\",\r\n\"endereco\": {\r\n    \"logradouro\": \"rua 4\",\r\n    \"bairro\": \"bairro\",\r\n    \"cep\": \"19802050\",\r\n    \"cidade\": \"Assis\",\r\n    \"uf\": \"SP\",\r\n    \"numero\": \"3\",\r\n    \"complemento\": \"complemento 3\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/medicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar médicos (ordenação)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/medicos?sort=nome,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "nome,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar médicos simples c/ paginação no fonte java",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/medicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar médicos c/ paginação",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/medicos?page=0&size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar médicos por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/medicos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar médico",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"6\",\r\n    \"nome\": \"Developer 6 atualizado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/medicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir médico",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/medicos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medicos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
