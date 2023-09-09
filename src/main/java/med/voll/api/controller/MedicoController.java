@@ -6,7 +6,9 @@ import med.voll.api.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -18,8 +20,14 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar (@RequestBody @Valid DadosCadastroMedico dados){
-        repository.save(new Medico(dados));
+    public ResponseEntity cadastrar (@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriComponentsBuilder){
+
+        var medico = new Medico(dados);
+        repository.save(medico);
+
+        var uri = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
     }
 
     /*
@@ -30,26 +38,40 @@ public class MedicoController {
     */
 
     @GetMapping //findAllByAtivotrue
-    public Page<DadosListagemMedico> listar(Pageable paginacao) {
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
+    public ResponseEntity<Page<DadosListagemMedico>> listar(Pageable paginacao) {
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
+
+        return ResponseEntity.ok(page);
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
+
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity excluir(@PathVariable Long id){
         // Exclusão Física
         //repository.deleteById(id);
 
         // Exclusão Lógica
         var medico = repository.getReferenceById(id);
         medico.excluir();
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id){
+
+        var medico = repository.getReferenceById(id);
+
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 
 }
