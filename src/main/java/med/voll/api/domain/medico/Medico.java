@@ -1,6 +1,7 @@
 package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //@NotBlank(message = "Nome é obrigatório!")
     private String nome;
     private String email;
     private String telefone;
