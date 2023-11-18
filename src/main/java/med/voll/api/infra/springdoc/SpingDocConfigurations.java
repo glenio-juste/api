@@ -17,6 +17,4 @@ public class SpingDocConfigurations {
                                 new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
     }
 
-
-
 }
