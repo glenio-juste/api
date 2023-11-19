@@ -152,7 +152,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnbGVubi5qdXN0QGVtYWlsLmNvbS5iciIsImlzcyI6IkFQSSBWb2xsLm1lZCIsImV4cCI6MTY5ODIwMDM5NH0.0H4Q2PDPwignvPLbbmmxMtXx7cI3A1VMvcYx_1dITP0",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnbGVubi5qdXN0QGVtYWlsLmNvbS5iciIsImlzcyI6IkFQSSBWb2xsLm1lZCIsImV4cCI6MTcwMDE4MTI1OH0.-1rlgS0CHcayMZMft0caWQv04lvgXXF6emBZNu0wEAM",
 							"type": "string"
 						}
 					]
@@ -450,6 +450,43 @@
 					"port": "8080",
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agendar Consulta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnbGVubi5qdXN0QGVtYWlsLmNvbS5iciIsImlzcyI6IkFQSSBWb2xsLm1lZCIsImV4cCI6MTcwMDE4MTI1OH0.-1rlgS0CHcayMZMft0caWQv04lvgXXF6emBZNu0wEAM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idPaciente\": 1,    \r\n    \"especialidade\": \"GINECOLOGIA\",\r\n    \"data\": \"2023-11-25T16:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/consultas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consultas"
 					]
 				}
 			},
